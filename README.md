@@ -17,6 +17,8 @@ refer_video
 
 - output
 
+https://github.com/Tencent/MimicMotion/assets/149982694/940a4aa0-a174-48e6-add7-96bb74ea916e
+
 ## How to use
 make sure `ffmpeg` is worked in your commandline
 for Linux
