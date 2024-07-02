@@ -41,7 +41,7 @@ pip install -r requirements.txt
 weights will be downloaded from huggingface
 
 ## Tutorial
-- [Demo](https://www.bilibili.com/video/BV1Br421L7rX)
+-【MimicMotion! ComfyUI插件来了-哔哩哔哩】 https://b23.tv/McnRUpd
 - QQ群：852228202
 
 ## Thanks
