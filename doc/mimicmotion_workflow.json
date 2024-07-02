@@ -1,0 +1,206 @@
+{
+  "last_node_id": 5,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        39,
+        28
+      ],
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "demo1.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadVideo",
+      "pos": [
+        51,
+        356
+      ],
+      "size": {
+        "0": 315,
+        "1": 612.4444580078125
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            5
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "demo.mp4",
+        "Video",
+        {
+          "hidden": false,
+          "paused": false,
+          "params": {}
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "MimicMotionNode",
+      "pos": [
+        459,
+        54
+      ],
+      "size": {
+        "0": 315,
+        "1": 294
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ref_image",
+          "type": "IMAGE",
+          "link": 4,
+          "slot_index": 0
+        },
+        {
+          "name": "ref_video_path",
+          "type": "VIDEO",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MimicMotionNode"
+      },
+      "widgets_values": [
+        576,
+        2,
+        8,
+        6,
+        4,
+        25,
+        2,
+        15,
+        415,
+        "randomize"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "PreViewVideo",
+      "pos": [
+        816,
+        74
+      ],
+      "size": {
+        "0": 210,
+        "1": 377.77777099609375
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreViewVideo"
+      },
+      "widgets_values": [
+        {
+          "hidden": false,
+          "paused": false,
+          "params": {}
+        }
+      ]
+    }
+  ],
+  "links": [
+    [
+      4,
+      2,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      0,
+      5,
+      1,
+      "VIDEO"
+    ],
+    [
+      6,
+      5,
+      0,
+      4,
+      0,
+      "VIDEO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.1000000000000005,
+      "offset": [
+        86.66106242715553,
+        12.114120018825606
+      ]
+    }
+  },
+  "version": 0.4
+}

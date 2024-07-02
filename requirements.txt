@@ -8,3 +8,4 @@ moviepy
 matplotlib
 opencv-python
 accelerate
+av

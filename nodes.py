@@ -64,6 +64,9 @@ class MimicMotionNode:
                 "tile_overlap": ("INT",{
                     "default": 6
                 }),
+                "decode_chunk_size":("INT",{
+                    "default": 8
+                }),
                 "num_inference_steps":  ("INT",{
                     "default": 25
                 }),
@@ -90,8 +93,8 @@ class MimicMotionNode:
 
     @torch.no_grad()
     def gen_video(self,ref_image,ref_video_path,resolution,sample_stride,
-                  tile_size,tile_overlap,num_inference_steps,guidance_scale,
-                  fps,seed):
+                  tile_size,tile_overlap,decode_chunk_size,num_inference_steps,
+                  guidance_scale,fps,seed):
         torch.set_default_dtype(torch.float16)
         infer_config = OmegaConf.load(os.path.join(now_dir,"test.yaml"))
         infer_config.base_model_path = svd_dir
@@ -109,6 +112,7 @@ class MimicMotionNode:
         task_config = {
             "tile_size": tile_size,
             "tile_overlap": tile_overlap,
+            "decode_chunk_size": decode_chunk_size,
             "num_inference_steps": num_inference_steps,
             "noise_aug_strength": 0,
             "guidance_scale": guidance_scale,
@@ -196,7 +200,7 @@ def run_pipeline(pipeline: MimicMotionPipeline, image_pixels, pose_pixels, devic
         height=pose_pixels.shape[-2], width=pose_pixels.shape[-1], fps=task_config["fps"],
         noise_aug_strength=task_config["noise_aug_strength"], num_inference_steps=task_config["num_inference_steps"],
         generator=generator, min_guidance_scale=task_config["guidance_scale"], 
-        max_guidance_scale=task_config["guidance_scale"], decode_chunk_size=8, output_type="pt", device=device
+        max_guidance_scale=task_config["guidance_scale"], decode_chunk_size=task_config['decode_chunk_size'], output_type="pt", device=device
     ).frames.cpu()
     video_frames = (frames * 255.0).to(torch.uint8)
 
