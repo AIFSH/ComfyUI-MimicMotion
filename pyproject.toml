@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-mimicmotion"
+description = "a comfyui custom node for [a/MimicMotion](https://github.com/Tencent/MimicMotion)"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["diffusers", "transformers", "decord", "einops", "omegaconf", "onnxruntime-gpu", "moviepy", "matplotlib", "opencv-python", "accelerate", "av"]
+
+[project.urls]
+Repository = "https://github.com/AIFSH/ComfyUI-MimicMotion"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-MimicMotion"
+Icon = ""
