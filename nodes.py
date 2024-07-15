@@ -52,6 +52,7 @@ class MimicMotionNode:
             "required":{
                 "ref_image":("IMAGE",),
                 "ref_video_path":("VIDEO",),
+                "ckpt_type":(["MimicMotion_1","MimicMotion_1-1"],),
                 "resolution":([576,768],{
                     "default":576,
                 }),
@@ -92,14 +93,20 @@ class MimicMotionNode:
     CATEGORY = "AIFSH_MimicMotion"
 
     @torch.no_grad()
-    def gen_video(self,ref_image,ref_video_path,resolution,sample_stride,
-                  tile_size,tile_overlap,decode_chunk_size,num_inference_steps,
-                  guidance_scale,fps,seed):
+    def gen_video(self, ref_image, ref_video_path, ckpt_type, resolution, sample_stride,
+                  tile_size, tile_overlap, decode_chunk_size, num_inference_steps,
+                  guidance_scale, fps, seed):
         torch.set_default_dtype(torch.float16)
-        infer_config = OmegaConf.load(os.path.join(now_dir,"test.yaml"))
+        infer_config = OmegaConf.load(os.path.join(now_dir, "test.yaml"))
         infer_config.base_model_path = svd_dir
-        infer_config.ckpt_path = os.path.join(ckpt_dir,"MimicMotion.pth")
-        pipeline = create_pipeline(infer_config,device)
+        
+        # 根据ckpt_type设置ckpt_path
+        if ckpt_type == "MimicMotion_1":
+            infer_config.ckpt_path = os.path.join(ckpt_dir, "MimicMotion_1.pth")
+        elif ckpt_type == "MimicMotion_1-1":
+            infer_config.ckpt_path = os.path.join(ckpt_dir, "MimicMotion_1-1.pth")
+        
+        pipeline = create_pipeline(infer_config, device)
 
         ############################################## Pre-process data ##############################################
         ref_image = ref_image.numpy()[0] * 255
