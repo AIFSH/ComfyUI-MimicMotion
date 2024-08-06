@@ -50,40 +50,40 @@ class MimicMotionNode:
     def INPUT_TYPES(s):
         return {
             "required":{
-                "ref_image":("IMAGE",),
-                "ref_video_path":("VIDEO",),
-                "ckpt_type":(["MimicMotion_1","MimicMotion_1-1"],),
-                "resolution":([576,768],{
+                "参考图片":("IMAGE",),
+                "参考视频":("VIDEO",),
+                "模型选择":(["MimicMotion_1","MimicMotion_1-1"],),
+                "分辨率选择":([576,768],{
                     "default":576,
                 }),
-                "sample_stride":("INT",{
+                "采样步长":("INT",{
                     "default": 2
                 }),
-                "tile_size": ("INT",{
+                "分块大小": ("INT",{
                     "default": 16
                 }),
-                "tile_overlap": ("INT",{
+                "图像过度帧": ("INT",{
                     "default": 6
                 }),
-                "decode_chunk_size":("INT",{
+                "解码分块大小":("INT",{
                     "default": 8
                 }),
-                "num_inference_steps":  ("INT",{
+                "推理步骤":  ("INT",{
                     "default": 25
                 }),
-                "guidance_scale":("FLOAT",{
+                "引导尺寸比例":("FLOAT",{
                     "default": 2.0
                 }),
-                "fps": ("INT",{
+                "帧率": ("INT",{
                     "default": 15
                 }),
-                "seed": ("INT",{
+                "种子": ("INT",{
                     "default": 42
                 }),
             }
         }
     
-    RETURN_TYPES = ("VIDEO",)
+    RETURN_TYPES = ("视频输出",)
     #RETURN_NAMES = ("image_output_name",)
 
     FUNCTION = "gen_video"
